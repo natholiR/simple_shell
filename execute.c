@@ -23,7 +23,8 @@ return (num_builtins);
 */
 int sh_exit(char **args)
 {
-return (200);
+	(void)args;
+	return (200);
 }
 
 /**
@@ -39,13 +40,15 @@ return (200);
 int _fork_fun(char **arg, char **av, char **env, char *lineptr, int np, int c)
 {
 pid_t child;
-int stat, i;
+int stat;
+int num_builtins;
+int i;
 char *format = "%s: %d: %s: not found\n";
 
 if (arg[0] == NULL)
 return (1);
 
-int num_builtins = sh_num_builtins();
+ num_builtins = sh_num_builtins();
 for (i = 0; i < num_builtins; i++)
 {
 if (strcmp(arg[0], builtin_str[i]) == 0)
