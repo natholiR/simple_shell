@@ -12,8 +12,9 @@ int (*builtin_func[])(char **) = {&sh_exit};
  */
 int sh_num_builtins(void)
 {
-    static int num_builtins = sizeof(builtin_str) / sizeof(char *);
-    return num_builtins;
+	static int num_builtins = sizeof(builtin_str) / sizeof(char *);
+
+	return (num_builtins);
 }
 
 /**
@@ -23,7 +24,7 @@ int sh_num_builtins(void)
  */
 int sh_exit(char **args)
 {
-    return 200;
+	return (200);
 }
 
 /**
@@ -38,38 +39,41 @@ int sh_exit(char **args)
  */
 int _fork_fun(char **arg, char **av, char **env, char *lineptr, int np, int c)
 {
-    pid_t child;
-    int stat, i;
-    char *format = "%s: %d: %s: not found\n";
+	pid_t child;
+	int stat, i;
+	char *format = "%s: %d: %s: not found\n";
 
-    if (arg[0] == NULL)
-        return 1;
+	if (arg[0] == NULL)
+		return (1);
 
-    int num_builtins = sh_num_builtins();
-    for (i = 0; i < num_builtins; i++)
-    {
-        if (strcmp(arg[0], builtin_str[i]) == 0)
-            return builtin_func[i](arg);
-    }
+	int num_builtins = sh_num_builtins();
 
-    child = fork();
-    if (child == 0)
-    {
-        if (execve(arg[0], arg, env) == -1)
-        {
-            fprintf(stderr, format, av[0], np, arg[0]);
-            if (!c)
-                free(arg[0]);
-            free(arg);
-            free(lineptr);
-            exit(errno);
-        }
-    }
-    else
-    {
-        wait(&stat);
-        return stat;
-    }
+	for (i = 0; i < num_builtins; i++)
+	{
+		if (strcmp(arg[0], builtin_str[i]) == 0)
+			return (builtin_func[i](arg));
+	}
 
-    return 0;
+	child = fork();
+	if (child == 0)
+	{
+		if (execve(arg[0], arg, env) == -1)
+		{
+			fprintf(stderr, format, av[0], np, arg[0]);
+			if (!c)
+				free(arg[0]);
+			free(arg);
+
+			free(lineptr);
+			exit(errno)
+		}
+	}
+
+	else
+	{
+		wait(&stat);
+		return (stat);
+	}
+
+	return (0);
 }
