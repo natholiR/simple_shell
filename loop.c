@@ -19,4 +19,5 @@ if (getline(&input, &size, stdin) == -1)
 free(input);
 return (NULL);
 }
-
+return(input);
+}
