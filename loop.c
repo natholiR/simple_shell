@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
-* _getline_command - prompt to take the command line
+* _getline_command - it prepare the command line
 *
 * Return: the command line
 */
@@ -19,9 +19,4 @@ if (getline(&input, &size, stdin) == -1)
 free(input);
 return (NULL);
 }
-
-return (input);
-}
-
-
 

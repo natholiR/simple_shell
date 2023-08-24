@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _getenv - To prints the environment
+ * _getenv - prints the environment
  *
  * @env: environment variable to print
  *
@@ -9,12 +9,12 @@
 
 void _getenv(char **env)
 {
-	size_t runn = 0;
+	size_t runner = 0;
 
-	while (env[runn])
+	while (env[runner])
 	{
-		write(STDOUT_FILENO, env[runn], _strlen(env[runn]));
+		write(STDOUT_FILENO, env[runner], _strlen(env[runner]));
 		write(STDOUT_FILENO, "\n", 1);
-		runn++;
+		runner++;
 	}
 }
