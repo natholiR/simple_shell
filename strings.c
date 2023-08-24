@@ -1,115 +1,107 @@
 #include "main.h"
 
 /**
-* _strcat - concatenates two strings
-*
-* @dest: Destination string to append to
-* @src: Origin string to append to dest
-*
-* Return: Pointer to the concatenated string
-*/
+ * _strcat -To concatenates two strings
+ *
+ * @dest: A Destination string
+ *
+ * @src: Origin string or source
+ * Return: concatenated string
+ */
 
-char *_strcat(char *dest, char *src)
+char _strcat(char dest, char *src)
 {
-int dest_len = 0, src_len = 0;
+	int o, k = 0;
 
-/* Calculate length of dest string */
-while (dest[dest_len] != '\0')
-dest_len++;
-
-/* Append src string to dest */
-while (src[src_len] != '\0')
-{
-dest[dest_len] = src[src_len];
-dest_len++;
-src_len++;
-}
-dest[dest_len] = '\0';
-
-return (dest);
+	for (o = 0; dest[o] != '\0'; o++)
+	{
+	}
+	for (k = 0; src[k] != '\0'; k++)
+	{
+		dest[o] = src[k];
+		o++;
+	}
+	dest[o] = '\0';
+	return (dest);
 }
 
 /**
-* _strcmp - compares two strings
-*
-* @s1: First string to compare
-* @s2: Second string to compare
-*
-* Return: The difference between the strings
-*/
+ * _strcmp - compares two strings
+ *
+ * @s1: a string
+ * @s2: Another string
+ *
+ * Return: the difference between the strings
+ *
+ */
 
-int _strcmp(char *s1, char *s2)
+int _strcmp(char s1, char s2)
 {
-int i = 0;
+	int k = 0;
+	int val;
 
-while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
-i++;
-
-return (s1[i] - s2[i]);
+	while (s1[k] != 0 && s2[k] != 0 && s1[k] == s2[k])
+		k++;
+	val = s1[k] - s2[k];
+	return (val);
 }
 
 /**
-* _strlen - returns the size of a string
-* @s: The string to measure
-*
-* Return: The size of the string
-*/
+ * _strlen - returns the size of the string
+ * @s: the string to measure
+ * Return: the size of the string
+ */
 
 int _strlen(char *s)
 {
-int len = 0;
+	int j;
 
-while (s[len] != '\0')
-len++;
+	for (j = 0; s[j] != 0; j++)
+		;
 
-return (len);
+	return (j);
 }
 
 /**
-* _strncmp - compares two strings up to n bytes
-*
-* @s1: First string to compare
-* @s2: Second string to compare
-* @n: Number of bytes to compare
-*
-* Return: 0 if equal, else the difference
-*/
+ *_strncmp -  To compares two strings
+ *@s1: A string one
+ *@s2: A string two
+ *@n: A number of bytes
+ * Return: 0 if equal, else the difference
+ */
 
-size_t _strncmp(char *s1, char *s2, size_t n)
+size_t _strncmp(char s1, char s2, size_t n)
 {
-size_t i;
+	size_t k, l;
 
-for (i = 0; s1[i] != '\0' && s2[i] != '\0' && i < n; i++)
-{
-if (s1[i] != s2[i])
-return (s1[i] - s2[i]);
-}
+	for (l = 0; s1[l] != '\0' && l < n; l++)
+	{
+		k = s1[l] - s2[l];
 
-if (i == n)
-return (0);
-
-return (s1[i] - s2[i]);
+		if (k != 0)
+		{
+			return (k);
+		}
+	}
+	return (0);
 }
 
 /**
-* _strcpy - copies a source string to destination strings
-*
-* @dest: Destination of the copy
-* @src: Source of the copy
-*
-* Return: Pointer to the destination string
-*/
+ * _strcpy - copies a  source string to destination strings
+ * @dest: destination of the copy
+ * @src: source of the copy
+ *
+ * Return: the pointer to dest
+ */
 
-char *_strcpy(char *dest, char *src)
+char _strcpy(char dest, char *src)
 {
-int i = 0;
+	int j = 0;
 
-while (src[i] != '\0')
-{
-dest[i] = src[i];
-i++;
-}
-dest[i] = '\0';
-
-return (dest);
+	for (j = 0; src[j] != '\0'; j++)
+	{
+		dest[j] = src[j];
+	}
+	dest[j + 1] = 0;
+	return (dest);
 }

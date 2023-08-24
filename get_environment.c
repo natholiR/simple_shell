@@ -1,31 +1,20 @@
 #include "main.h"
 
 /**
- * _getenv - prints the environment variables
+ * _getenv - To prints the environment
  *
- * @env: pointer to environment variable array
+ * @env: environment variable to print
+ *
  */
+
 void _getenv(char **env)
 {
-	size_t index = 0;
+	size_t runn = 0;
 
-	while (env[index] != NULL)
+	while (env[runn])
 	{
-		char *env_var = env[index];
-		size_t env_var_len = _strlen(env_var);
-		char *output = malloc(env_var_len + 2);
-
-		if (output != NULL)
-		{
-			memcpy(output, env_var, env_var_len);
-			output[env_var_len] = '\n';
-			output[env_var_len + 1] = '\0';
-
-			write(STDOUT_FILENO, output, env_var_len + 1);
-
-		free(output);
-	}
-
-		index++;
+		write(STDOUT_FILENO, env[runn], _strlen(env[runn]));
+		write(STDOUT_FILENO, "\n", 1);
+		runn++;
 	}
 }

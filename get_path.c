@@ -1,34 +1,31 @@
 #include "main.h"
-#include <string.h>
 
 /**
- * _get_path - gets the path from the environment variable.
+ * _get_path - to gets the path.
  * @env: Environment variable.
- * Return: Path or NULL if not found or failed to allocate memory.
+ * Return: Path.
  */
-char *_get_path(char **env)
+
+char _get_path(char *env)
 {
-	size_t index = 0;
+	size_t new_index = 0, var = 0, length = 5;
 	char *path = NULL;
 
-	while (env[index] != NULL)
-	{
+	for (new_index = 0; _strncmp(env[new_index], "PATH=", 5); new_index++)
+		;
+	if (env[new_index] == NULL)
+		return (NULL);
 
-		if (strncmp(env[index], "PATH=", 5) == 0)
-		{
-			path = malloc(sizeof(char) * (strlen(env[index]) - 4));
+	for (length = 5; env[new_index][var]; var++, length++)
+		;
+	path = malloc(sizeof(char) * (length + 1));
 
-			if (path == NULL)
-			{
-				return (NULL);
-				{
-				strcpy(path, env[index] + 5);
-				return (path);
-				}
-				index++;
-			}
-			return (NULL);
-		}
-	}
-	return(0);
+	if (path == NULL)
+		return (NULL);
+
+	for (var = 5, length = 0; env[new_index][var]; var++, length++)
+		path[length] = env[new_index][var];
+
+	path[length] = '\0';
+	return (path);
 }
