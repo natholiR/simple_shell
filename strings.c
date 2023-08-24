@@ -1,24 +1,24 @@
 #include "main.h"
 
 /**
- * _strcat -To concatenates two strings
+ * _strcat - concatenates two strings
  *
- * @dest: A Destination string
+ * @dest: Destination string
  *
- * @src: Origin string or source
- * Return: concatenated string
+ * @src: Origin string
+ * Return: the concatenated string
  */
 
-char _strcat(char dest, char *src)
+char *_strcat(char *dest, char *src)
 {
-	int o, k = 0;
+	int o, p = 0;
 
 	for (o = 0; dest[o] != '\0'; o++)
 	{
 	}
-	for (k = 0; src[k] != '\0'; k++)
+	for (p = 0; src[p] != '\0'; p++)
 	{
-		dest[o] = src[k];
+		dest[o] = src[p];
 		o++;
 	}
 	dest[o] = '\0';
@@ -35,19 +35,19 @@ char _strcat(char dest, char *src)
  *
  */
 
-int _strcmp(char s1, char s2)
+int _strcmp(char *s1, char *s2)
 {
-	int k = 0;
+	int p = 0;
 	int val;
 
-	while (s1[k] != 0 && s2[k] != 0 && s1[k] == s2[k])
-		k++;
-	val = s1[k] - s2[k];
+	while (s1[p] != 0 && s2[p] != 0 && s1[p] == s2[p])
+		p++;
+	val = s1[p] - s2[p];
 	return (val);
 }
 
 /**
- * _strlen - returns the size of the string
+ * _strlen - returns the size of a string
  * @s: the string to measure
  * Return: the size of the string
  */
@@ -63,14 +63,14 @@ int _strlen(char *s)
 }
 
 /**
- *_strncmp -  To compares two strings
- *@s1: A string one
- *@s2: A string two
- *@n: A number of bytes
+ *_strncmp -  compares two strings
+ *@s1: string one
+ *@s2: string two
+ *@n: number of bytes
  * Return: 0 if equal, else the difference
  */
 
-size_t _strncmp(char s1, char s2, size_t n)
+size_t _strncmp(char *s1, char *s2, size_t n)
 {
 	size_t k, l;
 
@@ -94,7 +94,7 @@ size_t _strncmp(char s1, char s2, size_t n)
  * Return: the pointer to dest
  */
 
-char _strcpy(char dest, char *src)
+char *_strcpy(char *dest, char *src)
 {
 	int j = 0;
 
@@ -105,3 +105,5 @@ char _strcpy(char dest, char *src)
 	dest[j + 1] = 0;
 	return (dest);
 }
+
+

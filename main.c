@@ -1,17 +1,17 @@
 #include "main.h"
 
 /**
- * main - to Entry point
+ * main - Entry point
  * @ac: Count of arguments
  * @av: Arguments
- * @env: the Environment variables
+ * @env: Environment variables
  * Return: 0 on success
  */
 
-int main(int ac, char *av, char *env)
+int main(int ac, char **av, char **env)
 {
 	int pathval = 0, stat = 0, is_path = 0;
-	char input = NULL, *command_array = NULL;
+	char *input = NULL, **commands_array = NULL;
 	(void)ac;
 	while (1) /**infinite loop*/
 	{
@@ -21,24 +21,24 @@ int main(int ac, char *av, char *env)
 			return (0);
 		if (input)
 		{
-			pathval++, command_array = tokenize(input);
-			if (!command_array)
+			pathval++, commands_array = tokenize(input);
+			if (!commands_array)
 				free(input);
-			if (!_strcmp(command_array[0], "env"))
+			if (!_strcmp(commands_array[0], "env"))
 				_getenv(env);
 			else
 			{
-				is_path = _values_path(&command_array[0], env);
-				stat = _fork_fun(command_array, av, env, input, pathval, is_path);
+				is_path = _values_path(&commands_array[0], env);
+				stat = _fork_fun(commands_array, av, env, input, pathval, is_path);
 				if (stat == 200)
 				{
 					free(input);
 					return (0);
 				}
 				if (is_path == 0)
-					free(command_array[0]);
+					free(commands_array[0]);
 			}
-			free(command_array); /** frees command_array*/
+			free(commands_array); /** frees commands_array*/
 		}
 		else
 		{
@@ -50,3 +50,5 @@ int main(int ac, char *av, char *env)
 	}
 	return (0);
 }
+
+
